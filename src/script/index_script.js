@@ -159,6 +159,7 @@ const alive = document.getElementById("alive");
 alive.onclick = () => {
   dead.checked = false;
   unknown.checked = false;
+  indexPage = 0
   searchShow();
 };
 
@@ -166,6 +167,7 @@ const dead = document.getElementById("dead");
 dead.onclick = () => {
   alive.checked = false;
   unknown.checked = false;
+  indexPage = 0
   searchShow();
 };
 
@@ -173,6 +175,7 @@ const unknown = document.getElementById("unknown");
 unknown.onclick = () => {
   alive.checked = false;
   dead.checked = false;
+  indexPage = 0
   searchShow();
 };
 
@@ -181,6 +184,7 @@ male.onclick = () => {
   female.checked = false;
   genderless.checked = false;
   unknowng.checked = false;
+  indexPage = 0
   searchShow();
 };
 
@@ -189,6 +193,7 @@ female.onclick = () => {
   male.checked = false;
   genderless.checked = false;
   unknowng.checked = false;
+  indexPage = 0
   searchShow();
 };
 
@@ -197,6 +202,7 @@ genderless.onclick = () => {
   male.checked = false;
   female.checked = false;
   unknowng.checked = false;
+  indexPage = 0
   searchShow();
 };
 
@@ -205,6 +211,7 @@ unknowng.onclick = () => {
   male.checked = false;
   female.checked = false;
   genderless.checked = false;
+  indexPage = 0
   searchShow();
 };
 
@@ -306,8 +313,8 @@ function searchShow() {
       const pages = jsonData.info;
       characterClear();
       pageClear();
-      creatCharacter(result);
       creatPage(pages.pages);
+      creatCharacter(result);
     })
     .catch(() => {
       const container = document.querySelector(".container-cards");
