@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rick and Morty</title>
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/favicon/site.webmanifest" />
+
+    <!--Font Awesome CDN-->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../src/css/index_style.css" />
+  </head>
+  <body>
+    <section class="all">
+    <header class="container-header" id="sticky">
+      <div class="logo-header">
+        <a href="index.html"
+          ><img src="../public/images/test.png" alt="Logo"
+        /></a>
+      </div>
+
+      <nav>
+        <ul class="nav-list">
+          <li>
+            <a href="#home">Home</a>
+          </li>
+          <li>
+            <a href="#characters">Characters</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Final header -->
+    
+    <section class="welcome" id="home">
+      <img class="parallax" src="../public/images/bg.png" alt="Background" />
+
+      <div class="apresentation">
+        <div class="logo-welcome">
+          <a href="index.html"
+            ><img src="../public/images/logo.png" alt="Logo"
+          /></a>
+        </div>
+        <h3>Characters</h3>
+      </div>
+    </section>
+    <!--Final section welcome-->
+
+    <section class="characters" id="characters">
+      <header class="container-char"> 
+        <div class="navigation" data-anime="top">
+          <h1>Navigation</h1>
+          <h3>In search of your favorite characters</h3>
+        </div>
+
+        <div class="togles" data-anime="top">
+          <div class="toggle-status">
+            <h2>Status</h2>
+            <label class="switch">
+              <input type="checkbox" id="alive" />
+              <span class="slider round"></span>
+            </label>
+            <p>Alive</p>
+            <label class="switch">
+              <input type="checkbox" id="dead" />
+              <span class="slider round"></span>
+            </label>
+            <p>Dead</p>
+            <label class="switch">
+              <input type="checkbox" id="unknown" />
+              <span class="slider round"></span>
+            </label>
+            <p>Unknown</p>
+          </div>
+
+          <div class="toggle-gender">
+            <h2>Gender</h2>
+            <label class="switch">
+              <input type="checkbox" id="female" />
+              <span class="slider round"></span>
+            </label>
+            <p>Female</p>
+            <label class="switch">
+              <input type="checkbox" id="male" />
+              <span class="slider round"></span>
+            </label>
+            <p>Male</p>
+            <label class="switch">
+              <input type="checkbox" id="genderless" />
+              <span class="slider round"></span>
+            </label>
+            <p>Genderless</p>
+            <label class="switch">
+              <input type="checkbox" id="unknowng" />
+              <span class="slider round"></span>
+            </label>
+            <p>Unknown</p>
+          </div>
+        </div>
+
+        <div class="searchBox" data-anime="top">
+          <i class="fas fa-search boxicon"></i>
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Search by name..."
+            id="searchChar"
+          />
+        </div>
+      </header>
+      <div class="container-cards"></div>
+
+      <div id="paginate">
+        <h2>Pages</h2>
+        <div class="controls">
+          <i class="fab fa-hornbill"></i>
+          <div class="numbers"></div>
+          <i class="fab fa-hornbill"></i>
+        </div>
+      </div>
+    </section>
+    <!--Final section character-->
+  </div>
+    <script>
+      // Create cards
+      async function getContent(page = 1) {
+        try {
+          const response = await fetch(
+            `https://rickandmortyapi.com/api/character/?page=${page}`
+          );
+          const data = await response.json();
+          const result = data.results;
+
+          result.forEach((element) => {
+            const container = document.querySelector(".container-cards");
+            const box = document.createElement("div");
+            container.appendChild(box);
+            box.classList.add("box");
+
+            const status = document.createElement("div");
+            box.appendChild(status);
+            status.classList.add("status");
+
+            const statusCharacter = document.createElement("p");
+            status.appendChild(statusCharacter);
+            statusCharacter.innerHTML = `${element.status}`;
+
+            if (element.status == "unknown") {
+              statusCharacter.setAttribute("id", "assigns-unknown");
+            }
+
+            const nameCharacter = document.createElement("h2");
+            box.appendChild(nameCharacter);
+            nameCharacter.classList.add("name");
+            nameCharacter.innerHTML = `${element.name}`;
+
+            const link = document.createElement("a");
+            box.appendChild(link);
+            link.classList.add("link_info");
+            link.setAttribute("id", `${element.id}`);
+            link.innerHTML = "Know more";
+            link.setAttribute("target", "_blank");
+            link.setAttribute("href", "./pages/description.html");
+            link.addEventListener("click", () => {
+              localStorage.setItem("id", element.id);
+            });
+
+            const circleWrapper = document.createElement("div");
+            box.appendChild(circleWrapper);
+            circleWrapper.classList.add("circleWrapper");
+
+            const imageCircle = document.createElement("img");
+            circleWrapper.appendChild(imageCircle);
+            imageCircle.getAttribute("src");
+            imageCircle.setAttribute("src", `${element.image}`);
+
+            const gender = document.createElement("div");
+            box.appendChild(gender);
+            gender.classList.add("gender");
+
+            const genderCharacter = document.createElement("p");
+            gender.appendChild(genderCharacter);
+            genderCharacter.innerHTML = `${element.gender}`;
+
+            if (element.gender == "unknown") {
+              genderCharacter.setAttribute("id", "assigns-unknown");
+            }
+
+            if (element.gender == "Genderless") {
+              genderCharacter.setAttribute("id", "gender-genderless");
+            }
+
+            VanillaTilt.init(document.querySelectorAll(".box"), {
+              max: 25,
+              speed: 400,
+            });
+          });
+
+          const info = data.info;
+          const numbers = document.querySelector(".numbers");
+          for (let index = 0; index < info.pages; index++) {
+            const numberPage = document.createElement("a");
+            numbers.appendChild(numberPage);
+            numberPage.setAttribute("id", `page${index + 1}`);
+            numberPage.addEventListener("click", () =>
+              skip(`page${index + 1}`)
+            );
+            numberPage.innerHTML = `${index + 1}`;
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      getContent();
+    </script>
+
+    <script src="../src/script/vanilla-tilt.min.js"></script>
+
+    <!-- Effect 3D cards -->
+    <script>
+      VanillaTilt.init(document.querySelectorAll(".box"), {
+        max: 25,
+        speed: 400,
+      });
+    </script>
+
+    <script src="../src/script/index_script.js"></script>
+
+    <!-- Final scripts JS -->
+  </body>
+</html>

@@ -117,7 +117,7 @@ function creatCharacter(character) {
     link.setAttribute("id", `${element.id}`);
     link.innerHTML = "Know more";
     link.setAttribute("target", "_blank");
-    link.setAttribute("href", "description.html");
+    link.setAttribute("href", "./pages/description.html");
     link.setAttribute("click", "getId(this.id)");
 
     const circleWrapper = document.createElement("div");
