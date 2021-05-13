@@ -10,21 +10,21 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../public/favicon/apple-touch-icon.png"
+      href="/public/favicon/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="../public/favicon/favicon-32x32.png"
+      href="/public/favicon/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="../public/favicon/favicon-16x16.png"
+      href="/public/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="../public/favicon/site.webmanifest" />
+    <link rel="manifest" href="./public/favicon/site.webmanifest" />
 
     <!--Font Awesome CDN-->
     <link
@@ -35,14 +35,14 @@
     />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../src/css/index_style.css" />
+    <link rel="stylesheet" href="/src/css/index_style.css" />
   </head>
   <body>
     <section class="all">
     <header class="container-header" id="sticky">
       <div class="logo-header">
         <a href="index.html"
-          ><img src="../public/images/test.png" alt="Logo"
+          ><img src="/public/images/test.png" alt="Logo"
         /></a>
       </div>
 
@@ -60,12 +60,12 @@
     <!-- Final header -->
     
     <section class="welcome" id="home">
-      <img class="parallax" src="../public/images/bg.png" alt="Background" />
+      <img class="parallax" src="/public/images/bg.png" alt="Background" />
 
       <div class="apresentation">
         <div class="logo-welcome">
           <a href="index.html"
-            ><img src="../public/images/logo.png" alt="Logo"
+            ><img src="/public/images/logo.png" alt="Logo"
           /></a>
         </div>
         <h3>Characters</h3>
@@ -150,7 +150,7 @@
   </div>
     <script>
       // Create cards
-      async function getContent(page = 1) {
+      async function getContent(page) {
         try {
           const response = await fetch(
             `https://rickandmortyapi.com/api/character/?page=${page}`
@@ -187,7 +187,7 @@
             link.setAttribute("id", `${element.id}`);
             link.innerHTML = "Know more";
             link.setAttribute("target", "_blank");
-            link.setAttribute("href", "./page/description.html");
+            link.setAttribute("href", "/page/description.html");
             link.addEventListener("click", () => {
               localStorage.setItem("id", element.id);
             });
@@ -242,7 +242,7 @@
       getContent();
     </script>
 
-    <script src="../src/script/vanilla-tilt.min.js"></script>
+    <script src="/src/script/vanilla-tilt.min.js"></script>
 
     <!-- Effect 3D cards -->
     <script>
@@ -252,8 +252,7 @@
       });
     </script>
 
-    <script src="../src/script/index_script.js"></script>
-
+    <script src="/src/script/index_script.js"></script>
     <!-- Final scripts JS -->
   </body>
 </html>

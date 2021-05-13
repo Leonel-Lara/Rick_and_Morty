@@ -117,8 +117,10 @@ function creatCharacter(character) {
     link.setAttribute("id", `${element.id}`);
     link.innerHTML = "Know more";
     link.setAttribute("target", "_blank");
-    link.setAttribute("href", "./pages/description.html");
-    link.setAttribute("click", "getId(this.id)");
+    link.setAttribute("href", "/page/description.html");
+    link.addEventListener("click", () => {
+      localStorage.setItem("id", element.id);
+    });
 
     const circleWrapper = document.createElement("div");
     box.appendChild(circleWrapper);
