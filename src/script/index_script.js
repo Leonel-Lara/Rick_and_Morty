@@ -321,7 +321,7 @@ function searchShow() {
       const noSearch = document.createElement("h2");
       container.appendChild(noSearch);
       noSearch.classList.add("noSearch");
-      noSearch.innerHTML = "Não encontrado...";
+      noSearch.innerHTML = "Not found...";
     });
 }
 
