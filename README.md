@@ -1,6 +1,4 @@
 # Rick_and_Morty
-Rick and Morty API
-Online link : https://mystifying-raman-cae737.netlify.app
 
 <br/>
 <img align="right" alt="GIF" src="https://media.giphy.com/media/l378BzHA5FwWFXVSg/giphy.gif" />
